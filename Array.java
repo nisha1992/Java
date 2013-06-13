@@ -5,24 +5,25 @@ private static int n;
 
 public static void MaxSubarray(int a[])
   {
-  int sum=0,in=0;
+  int sum=0,in=0,count=0;
   int subarr[]=new int[n];
   for(int i=0;i<n;i++)
    {
-   if(a[i]+sum >0)
+   if(a[i]+sum >sum)
     {
     subarr[in]=a[i];
     sum=a[i]+sum;
     in++;
+    count=in;
     }
-    else
+    else 
     {
     in=0;
     sum=0;
     }
    }
    System.out.println("Subarray with maximum sum is: ");
-   for(int i=0;i<n;i++)
+   for(int i=0;i<count;i++)
     {
     System.out.println(subarr[i]);
     }
