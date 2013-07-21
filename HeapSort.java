@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+class HeapSort
+{
+public static void buildHeap(Heap he,int a[],int s)
+{
+for(int i=0;i<s;i++)
+he.arr[i]=a[i];
+he.count=s;
+for(int i=((s-1)/2);i>=0;i--)
+{
+he.percolateDown(i);
+}
+}
+
+public static void heapSort(int a[],int n)
+{
+int temp,save;
+Heap h=new Heap(11,"max");
+buildHeap(h,a,n);
+save=h.count;
+for(int i=n-1;i>=0;i--)
+{
+temp=h.arr[0];
+h.arr[0]=h.arr[i];
+h.arr[i]=temp;
+h.count--;
+h.percolateDown(0);
+}
+h.count=save;
+System.out.println("sorted array:");
+for(int i=0;i<h.count;i++)
+{
+System.out.println(h.arr[i]+" ");
+}
+/*System.out.println("par6="+h.findParent(2));
+System.out.println("left6="+h.findLeft(2));
+System.out.println("right6="+h.findRight(2));
+h.deleteMax();
+h.deleteMax();
+System.out.println("After delete:");
+System.out.println("par6="+h.findParent(2));
+System.out.println("left6="+h.findLeft(2));
+System.out.println("right6="+h.findRight(2));*/
+}
+
+public static void main(String arg[]) throws IOException
+{
+int size,number;
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+System.out.println("enter the size of array:");
+size=Integer.parseInt(br.readLine());
+int array[]=new int[size];
+for(int i=0;i<size;i++)
+array[i]=Integer.parseInt(br.readLine());
+heapSort(array,size);
+}
+
+}
