@@ -48,13 +48,15 @@ Hashtable<Integer,Integer> table=new Hashtable();
      {
      System.out.print(z+" ");
      }
+      
    }
+  
  }
   
  public static void main(String arg[]) throws IOException
  {
  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
- sortArrayFrequency obj=new sortArrayFrequency();
+ sortArrayByFrequency obj=new sortArrayByFrequency();
  int size;
  System.out.println("Enter the array size:");
  System.out.println("size:");
@@ -66,5 +68,6 @@ Hashtable<Integer,Integer> table=new Hashtable();
    a[i]=Integer.parseInt(br.readLine());
   }
   obj.sort(a);
+  System.out.println();
  }
 }
