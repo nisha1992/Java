@@ -1,31 +1,27 @@
 import java.io.*;
-class Array
+class MaxSubArray
 {
 private static int n;
 
 public static void MaxSubarray(int a[])
   {
-  int sum=0,in=0;
+  int sum=0,max=sum;
   int subarr[]=new int[n];
   for(int i=0;i<n;i++)
    {
-   if(a[i]+sum >0)
+   sum=sum+a[i];
+   if(sum >max)
     {
-    subarr[in]=a[i];
-    sum=a[i]+sum;
-    in++;
+    max=sum;
     }
-    else
+    else if(sum <0)
     {
-    in=0;
     sum=0;
     }
    }
-   System.out.println("Subarray with maximum sum is: ");
-   for(int i=0;i<n;i++)
-    {
-    System.out.println(subarr[i]);
-    }
+   System.out.println("maximum sum of subarray is: ");
+    System.out.println(max);
+   
   }
 
 
