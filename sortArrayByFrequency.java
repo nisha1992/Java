@@ -1,73 +1,69 @@
-import java.io.*;
-import java.util.*;
-class sortArrayByFrequency
+class TrieNode
 {
-sorting s=new sorting();
-ArrayList<Integer> arr=new ArrayList();
-Hashtable<Integer,Integer> table=new Hashtable();
- public void sort(int a[])   //sort according to frequency
- { 
-  Integer p=0,z=0;
-   for(int i=0;i<a.length;i++)
-   {
-    if(table.containsKey(a[i]))
-    {
-    Integer temp=(Integer)table.get(a[i]);
-    temp=temp+1;
-    table.put(a[i],temp);
-    }
-    else
-    {
-    table.put(a[i],1);
-    }
-   }
-   Set<Integer> keys=table.keySet();
-   for(Integer i:keys)
-   {
-   Integer save=(Integer)table.get(i);
-   arr.add(save);
-   }
-   Collections.sort(arr);
-   System.out.println("array sort according to frequencies:");
-   Iterator it1=arr.iterator();
-   while(it1.hasNext())
-   {
-   Integer temp=(Integer)it1.next();
-   //Set<Integer> keys1=table.keySet();
-   for(Integer k:keys)
-     {
-     p=(Integer)table.get(k);
-     if(p.equals(temp))
-     {
-     z=k; 
-     table.remove(k);
-     break;
-     }
-     }
-     for(int i=0;i<temp;i++)
-     {
-     System.out.print(z+" ");
-     }
-      
-   }
-  
- }
-  
- public static void main(String arg[]) throws IOException
- {
- BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
- sortArrayByFrequency obj=new sortArrayByFrequency();
- int size;
- System.out.println("Enter the array size:");
- System.out.println("size:");
- size=Integer.parseInt(br.readLine());
- System.out.println("Enter the array elements:");
- int a[]=new int[size];
-  for(int i=0;i<size;i++)
-  {
-   a[i]=Integer.parseInt(br.readLine());
-  }
-  obj.sort(a);
-  System.out.println();
- }
+char l;
+boolean flag;
+TrieNode child[];
+TrieNode()
+{}
+
+
+TrieNode(char letter,boolean word)
+{
+l=letter;
+flag=word;
+child=new TrieNode[26];
+}
+
+}
+
+class Trie
+{
+
+static TrieNode create()
+{
+return(new TrieNode('\0',false));
+}
+public static void insert(TrieNode root,String str)
+{
+int offset=97;
+int l=str.length();
+char a[]=str.toCharArray();
+TrieNode temp=root;
+for(int i=0;i<l;i++)
+{
+if(temp.child[a[i]-offset]==null)
+temp.child[a[i]-offset] = new TrieNode(a[i], i == l-1 ? true : false);
+temp = temp.child[a[i]-offset];
+}
+}
+
+public static void printWord(TrieNode root,int index,char a[])
+{
+if(root ==null)
+return;
+
+for(int i=0;i<root.child.length;i++)
+{
+a[index]=root.l;
+printWord(root.child[i],index+1,a);
+}
+if(root.flag)
+{
+for(int j=1;j<=index;j++)
+{
+System.out.print(a[j]);
+}
+System.out.println();
+}
+}
+
+public static void main(String arg[])
+{
+TrieNode tree=create();
+String[] words = {"an","nisha","niks","jasso","priyanka"};
+for (int i = 0; i < words.length; i++)
+insert(tree, words[i]);
+char b[]=new char[100];
+printWord(tree,0,b);
+}
 }
