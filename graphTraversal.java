@@ -107,81 +107,81 @@ class graphTraversal
   
   public void BFS()
   {
-  MyQueue<Integer> que=new MyQueue();
-  for(int i=0;i<v;i++)
-  {
-    color[i]="white";
-    distance[i]=0;
-    parent[i]=i;
-  }
-  color[0]="grey";
-  distance[0]=0;
-  que.insert(0);
-  while(que.size()!=0)
-  {
-    int d=que.delete();
-    ListIterator<Integer> itr=arr[d].listIterator();
-    while(itr.hasNext())
+    MyQueue<Integer> que=new MyQueue();
+    for(int i=0;i<v;i++)
     {
-      int in=itr.next();
-      if(color[in].equals("white"))
-      {
-        color[in]="grey";
-        distance[in]=distance[d]+1;
-        parent[in]=d;
-        que.insert(in);
-      }
+      color[i]="white";
+      distance[i]=0;
+      parent[i]=i;
     }
-    color[d]="black";
+    color[0]="grey";
+    distance[0]=0;
+    que.insert(0);
+    while(que.size()!=0)
+    {
+      int d=que.delete();
+      ListIterator<Integer> itr=arr[d].listIterator();
+      while(itr.hasNext())
+      {
+        int in=itr.next();
+        if(color[in].equals("white"))
+        {
+          color[in]="grey";
+          distance[in]=distance[d]+1;
+          parent[in]=d;
+          que.insert(in);
+        }
+      }
+      color[d]="black";
+    }
   }
-}
   
   public void displayBFS()
   {
-  for(int i=0;i<v;i++)
-  System.out.println(i+"\t"+arr[i]);
-  System.out.println("distance:");
-  for(int i=0;i<v;i++)
-  System.out.print(" "+distance[i]);
-  System.out.println();
-  System.out.println("color:");
-  for(int i=0;i<v;i++)
-  System.out.print(" "+color[i]);
-  System.out.println();
-  System.out.println("parent:");
-  for(int i=0;i<v;i++)
-  System.out.print(" "+parent[i]);
-  System.out.println();
+    for(int i=0;i<v;i++)
+    System.out.println(i+"\t"+arr[i]);
+    System.out.println("distance:");
+    for(int i=0;i<v;i++)
+    System.out.print(" "+distance[i]);
+    System.out.println();
+    System.out.println("color:");
+    for(int i=0;i<v;i++)
+    System.out.print(" "+color[i]);
+    System.out.println();
+    System.out.println("parent:");
+    for(int i=0;i<v;i++)
+    System.out.print(" "+parent[i]);
+    System.out.println();
   }
   
   
   public static void main(String arg[]) throws IOException
   {
-  graphTraversal a=new graphTraversal(8);
-  a.addEdge(0,1);
-  a.addEdge(0,3);
-  a.addEdge(1,0);
-  a.addEdge(1,2);
-  a.addEdge(3,0);
-  a.addEdge(3,7);
-  a.addEdge(3,4);
-  a.addEdge(4,3);
-  a.addEdge(4,7);
-  a.addEdge(4,5);
-  a.addEdge(4,6);
-  a.addEdge(5,4);
-  a.addEdge(5,6);
-  a.addEdge(6,7);
-  a.addEdge(6,4);
-  a.addEdge(6,5);
-  a.addEdge(7,3);
-  a.addEdge(7,4);
-  a.addEdge(7,6);
-  System.out.println("DFS");
-  a.DFS();
-  a.displayDFS();
-  System.out.println("BFS");
-  a.BFS();
-  a.displayBFS();
+    graphTraversal a=new graphTraversal(8);
+    a.addEdge(0,1);
+    a.addEdge(0,3);
+    a.addEdge(1,0);
+    a.addEdge(1,2);
+    a.addEdge(3,0);
+    a.addEdge(3,7);
+    a.addEdge(3,4);
+    a.addEdge(4,3);
+    a.addEdge(4,7);
+    a.addEdge(4,5);
+    a.addEdge(4,6);
+    a.addEdge(5,4);
+    a.addEdge(5,6);
+    a.addEdge(6,7);
+    a.addEdge(6,4);
+    a.addEdge(6,5);
+    a.addEdge(7,3);
+    a.addEdge(7,4);
+    a.addEdge(7,6);
+    System.out.println("DFS");
+    a.DFS();
+    a.displayDFS();
+    System.out.println("BFS");
+    a.BFS();
+    a.displayBFS();
   }
-  }
+}
